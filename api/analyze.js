@@ -2,8 +2,13 @@
 const axios = require('axios')
 
 const DOUBAO_API_URL = process.env.DOUBAO_API_URL || 'https://ark.cn-beijing.volces.com/api/v3/responses'
-const DOUBAO_TOKEN = process.env.DOUBAO_TOKEN || 'e1274865-0de9-4d08-bd1d-e0325bbb4d51'
+const DOUBAO_TOKEN = process.env.DOUBAO_TOKEN
 const DOUBAO_MODEL = process.env.DOUBAO_MODEL || 'doubao-seed-1-6-thinking-250715'
+
+// 验证必需的环境变量
+if (!DOUBAO_TOKEN) {
+  throw new Error('DOUBAO_TOKEN environment variable is required. Please set it in your Vercel project settings or environment variables.')
+}
 
 const SYSTEM_PROMPT = '你是一个交友高手，对用户的动态有很强的洞察能力，且有丰富的交友互动技巧，擅长于输出简短但有效的分析和建议。'
 
